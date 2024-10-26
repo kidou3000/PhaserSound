@@ -17,20 +17,34 @@ var __extends = (this && this.__extends) || (function () {
 var MyGame = /** @class */ (function (_super) {
     __extends(MyGame, _super);
     function MyGame() {
-        return _super.call(this, { key: 'MyGame' }) || this;
+        var _this = _super.call(this, { key: 'MyGame' }) || this;
+        _this.soundEffects = {};
+        return _this;
     }
     MyGame.prototype.preload = function () {
         this.load.audio('bgm', 'assets/Fairyland.mp3'); // 実際のファイルパスに変更してね
-        this.load.audio('sfx', 'assets/decideSound.mp3'); // 効果音をロード
+        this.load.audio('sfxClick', 'assets/ClickSound.mp3'); // 効果音1をロード
+        this.load.audio('sfxAlert', 'assets/AlertSound.mp3'); // 効果音2をロード
     };
     MyGame.prototype.create = function () {
         var _this = this;
         var music = this.sound.add('bgm');
         music.play();
+        // 効果音をあらかじめ作成して保持
+        this.soundEffects['click'] = this.sound.add('sfxClick', { volume: 1 });
+        this.soundEffects['alert'] = this.sound.add('sfxAlert', { volume: 1 });
         // 効果音を再生するためのイベントリスナーを追加
         this.input.on('pointerdown', function () {
-            var soundEffect = _this.sound.add('sfx');
-            soundEffect.play();
+            console.log('クリックイベント発生'); // デバッグ用メッセージ
+            _this.soundEffects['click'].play(); // クリック効果音を再生
+        });
+        // 他の効果音を再生する例（例えば、警告を表示する際など）
+        this.time.addEvent({
+            delay: 5000, // 5秒後に再生
+            callback: function () {
+                console.log('5秒後の効果音再生');
+                _this.soundEffects['alert'].play(); // 警告効果音を再生
+            },
         });
     };
     return MyGame;
