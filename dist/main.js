@@ -1,6 +1,4 @@
 "use strict";
-// import Phaser from 'phaser';
-// declare const Phaser: any;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -22,13 +20,18 @@ var MyGame = /** @class */ (function (_super) {
         return _super.call(this, { key: 'MyGame' }) || this;
     }
     MyGame.prototype.preload = function () {
-        // 音声ファイルをロード
         this.load.audio('bgm', 'assets/Fairyland.mp3'); // 実際のファイルパスに変更してね
+        this.load.audio('sfx', 'assets/decideSound.mp3'); // 効果音をロード
     };
     MyGame.prototype.create = function () {
-        // 音声を再生
+        var _this = this;
         var music = this.sound.add('bgm');
         music.play();
+        // 効果音を再生するためのイベントリスナーを追加
+        this.input.on('pointerdown', function () {
+            var soundEffect = _this.sound.add('sfx');
+            soundEffect.play();
+        });
     };
     return MyGame;
 }(Phaser.Scene));
