@@ -1,0 +1,24 @@
+{
+  "name": "0600_phaser-game",
+  "version": "1.0.0",
+  "main": "index.js",
+"scripts": {
+  "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "phaser": "^3.86.0",
+    "typescript": "^5.6.3",
+    "undici": "^6.20.1"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+  
+}
